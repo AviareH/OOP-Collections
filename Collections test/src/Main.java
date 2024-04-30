@@ -3,13 +3,28 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        System.out.println("1. ArrayList\n2. LinkedList\n3. HashSet\n4. PriorityQueue\n5. TreeMap");
+        System.out.println("1. ArrayList\n2. LinkedList\n3. HashSet\n4. PriorityQueue\n5. HashMap");
         System.out.print("Which Program (1-5): ");
         int choice = input.nextInt();
-        arrayLists();
-        linkedLists();
-        hashSet();
-        priorityQueue();
+        switch(choice){
+            case 1:
+                arrayLists();
+                break;
+            case 2:
+                linkedLists();
+                break;
+            case 3:
+                hashSet();
+                break;
+            case 4:
+                priorityQueue();
+                break;
+            case 5:
+                hashMap();
+                break;
+            default:
+                System.out.println("Error");
+        }
     }
 
     private static void arrayLists() {
@@ -81,11 +96,46 @@ public class Main {
         System.out.println("In Common: "+favoriteFruits);
     }
     private static void priorityQueue(){
-        PriorityQueue<Integer> nums=new PriorityQueue<Integer>();
+        PriorityQueue<Integer> nums1=new PriorityQueue<Integer>();
+        PriorityQueue<Integer> nums2=new PriorityQueue<Integer>();
         for(int i=0;i<5;i++){
-            nums.add(i);
+            nums1.add(i);
+            nums2.add(i+6);
         }
-        System.out.println(nums);
+        System.out.println(nums1);
+        System.out.println(nums2);
+        nums1.offer(10);
+        System.out.println("Queue: "+nums1);
+        System.out.println("Queue Size: "+nums1.size());
+        System.out.println("First Element: "+nums1.peek());
+        for(int element : nums1){
+            System.out.print("Is "+ element + " in both Queues? ");
+            System.out.println(nums2.contains(element) ? "Yes": "No");
+        }
     }
 
+    private static void hashMap() {
+        HashMap<String, Boolean> sickPeople = new HashMap<String, Boolean>();
+        sickPeople.put("Jack", true);
+        sickPeople.put("Owen", false);
+        sickPeople.put("Kareem", false);
+        sickPeople.put("Mandy", true);
+        int numOfSickPeople = 0;
+        for (Map.Entry x : sickPeople.entrySet()) {
+            System.out.println(x.getKey() + " Is Sick? " + x.getValue());
+            if (Boolean.TRUE.equals(x.getValue())) {
+                numOfSickPeople++;
+            }
+        }
+        System.out.println("# of Sick People = "+numOfSickPeople);
+
+        System.out.println("Is Mandy in The List?");
+        if(sickPeople.containsKey("Mandy")){
+            System.out.println("Yes. Is Sick? "+sickPeople.get("Mandy"));
+        }
+        else{
+            System.out.println("Person Not Found");
+        }
+        System.out.println(sickPeople.values());
+    }
 }
