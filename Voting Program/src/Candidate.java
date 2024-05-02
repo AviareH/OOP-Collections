@@ -34,7 +34,11 @@ public class Candidate {
     public void voteFor(){
         num0fVotes++;
     }
+    public String candidateInfo() {
+        return "ID: "+id+", Name: "+name+", Votes: "+num0fVotes;
+    }
+
     public String toString() {
-        return "Candidate "+id+"\n\tName: "+name+"\n\tVotes: "+num0fVotes;
+        return name;
     }
 }
